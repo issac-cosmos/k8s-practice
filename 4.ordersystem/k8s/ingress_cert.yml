@@ -4,7 +4,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: order-backend-ingress
-  namespace: yoonzi
+  namespace: yoonzi-ns
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /$1 #첫번쨰 prefix제거
@@ -23,7 +23,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: yoonzi-order-backend-service
+            name: yoonzi-ns-order-backend-service
             port:
               number: 80
 
@@ -32,7 +32,7 @@ apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-prod
-  namespace: yoonzi
+  namespace: yoonzi-ns
 spec:
   acme:
   # 인증서 서버 주소. 해당 서버의 리소스를 통해 인증서 발행
@@ -51,7 +51,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: server-sagami003-com-tls
-  namespace: yoonzi
+  namespace: yoonzi-ns
 spec:
   secretName: server-sagami003-com-tls
   duration: 2160h #90day
