@@ -46,4 +46,4 @@ jobs:
       - name: eks kubectl apply
         run: |
           kubectl apply -f ./4.ordersystem/k8s/depl_svc.yml
-          kubectl rollout restart deployment yoonzi-ns-order-backend
+          kubectl rollout restart deployment yoonzi-ns-order-backend -n yoonzi-ns
